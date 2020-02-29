@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MediaDevices.getUserMedia()</title>
+</head>
+<body>
+
+<button onclick="startVideo()">ビデオ開始！</button>
+<button onclick="stopVideo()">ビデオ終了！</button>
+<button onclick="snapshot()">写真撮影！</button>
+<button onclick="Test1()">テスト1</button>
+
+<h2>JavaScriptでカメラ表示(・８・)</h2>
+<video autoplay width="320" height="240" style="border: solid 1px;"></video>
+
+<h2>スナップショット！</h2>
+<img id="img1"/><br>
+<img id="img2"/><br>
+
+
+<canvas id = "canvas1" style="border: solid 1px;" width="320" height="240"></canvas>
+<canvas id = "canvas2" style="border: solid 1px;" width="320" height="240"></canvas>
+<br>
+<canvas id = "canvas3" style="border: solid 1px;" width="320" height="240"></canvas>
+
+<span>変化率:<font size="7"><span id="changeRate"></span>%</font></span><br>
+
+<script src="cameraJS.js"></script>
+</body>
+</html>
