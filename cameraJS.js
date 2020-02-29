@@ -81,7 +81,7 @@ function UnderDiff1(ImageData1, ImageData2){
     var outPixels = out_img.data;
     
     
-    var firstY = g_Height * 0.8;
+    var firstY = g_Height * 0.5;
 	
 	var menseki = (g_Height - firstY) * g_Width;
 	var Changed_Count = 0;
@@ -130,6 +130,8 @@ function UnderDiff1(ImageData1, ImageData2){
 
 }
 
+var g_Count = 0;
+
 function Test1(){
     //var videoElement = document.querySelector('video');
     //var canvasElement = document.getElementById("canvas2");
@@ -143,8 +145,6 @@ function Test1(){
     
     if(firstFlg == false){
     	//context2.drawImage(g_videoElement, 0, 0, g_videoElement.width, g_videoElement.height);
-    	sleepAndExecuteFunc2(10, callback1);
-    	sleepAndExecuteFunc2(10, callback2);
     	
     	outObj = UnderDiff1(img1, img2)    	
 		// 変更した内容をキャンバスに書き戻す
@@ -154,8 +154,25 @@ function Test1(){
 		changeRate.innerHTML = outObj.changeRate;
 		
 		
+		g_Count++;
+		if(g_Count >= 200){
+	    	context1.drawImage(g_videoElement, 0, 0, g_videoElement.width, g_videoElement.height);
+	    	context2.drawImage(g_videoElement, 0, 0, g_videoElement.width, g_videoElement.height);
+			g_Count = 0;
+		}
+		
+		if((g_Count % 10) == 0){//1.0秒ごとに画面更新
+			if( (g_Count % 20) == 0){
+				context2.drawImage(g_videoElement, 0, 0, g_videoElement.width, g_videoElement.height);
+			}else{
+				context1.drawImage(g_videoElement, 0, 0, g_videoElement.width, g_videoElement.height);
+			}
+		}
+		
+		
+		
     	//context1.drawImage(g_videoElement, 0, 0, g_videoElement.width, g_videoElement.height);
-    	
+    	//0.1秒ごとに呼び出し
     	sleepAndExecuteFunc2(1, Test1);
     	
 
