@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+<title>テキスト読み上げテスト</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<script src="jquery-3.3.1.min.js"></script>
+
+<div>
+<textarea id="speechContent" rows="10" cols="60">ここに記入してください</textarea>
+<br>
+<button onclick="speak()">読み上げ</button><br>
+<button onclick="pause()">一時停止</button><br>
+<button onclick="resume()">再開</button><br>
+<button onclick="cancel()">停止</button><br>
+</div>
+
+
+
+
+<script>
+var currentSpeech = null;
+function speak(){
+  if(currentSpeech != null){
+  	speechSynthesis.cancel(currentSpeech);
+  } 
+   
+  var text = document.getElementById("speechContent").value;
+  	  currentSpeech = new SpeechSynthesisUtterance(text);
+	  speechSynthesis.speak( currentSpeech );
+}
+
+function pause(){
+ speechSynthesis.pause(currentSpeech);
+}
+
+function resume(){
+ speechSynthesis.resume(currentSpeech);
+}
+
+function cancel(){
+ speechSynthesis.cancel(currentSpeech)
+}
+</script>
+
+
+</body>
+</html>
