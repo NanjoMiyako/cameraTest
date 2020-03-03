@@ -442,6 +442,12 @@ var g_MapOpts;
 var g_Map;
 var g_Panorama;
 
+var g_latTextBox = document.getElementById("latitudeTextBox");
+var g_lngTextBox = document.getElementById("longitudeTextBox");
+
+g_latTextBox.value = 34.769844;
+g_lngTextBox.value = 138.014135;
+
 function SetGoogleApiKey(){
 	GoogleAPIKey = document.getElementById("GoogleApiKey1").value;
 	Init();
@@ -469,7 +475,15 @@ function initMap() {
   //};
   //g_Map = new google.maps.Map(document.getElementById("map"), g_MapOpts);
   
-  var fenway = {lat: 42.345573, lng: -71.098326};
+  //var fenway = {lat: 42.345573, lng: -71.098326};
+  //var fenway = {lat:34.769844, lng:138.014135};
+  var lat1 = Number(g_latTextBox.value);
+  var lng1 = Number(g_lngTextBox.value);
+  if(isNaN(lat1) || isNaN(lng1)){
+  	lat1 = Number('34.769844');
+  	lng1 = Number('138.014135');
+  }
+  var fenway = {lat:lat1, lng:lng1};
   g_Map = new google.maps.Map(document.getElementById('map'), {
     center: fenway,
     zoom: 14
@@ -479,7 +493,7 @@ function initMap() {
       document.getElementById('street'), {
         position: fenway,
         pov: {
-          heading: 34,
+          heading: 0,
           pitch: 10
         }
       });
